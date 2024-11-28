@@ -1,65 +1,51 @@
-// Array para armazenar os usuários registrados
-let users = [];
+import userRegistry from './userRegistry.js';
+import { BorderedReportDecorator, HeaderedReportDecorator, Report } from './report.js';
 
-// Função para adicionar um novo usuário
-function addUser(name, email) {
-    // Cria um objeto de usuário e o adiciona ao array
-    users.push({ name, email });
+// Função para renderizar a lista de usuários na tela
+function renderUserList() {
+  const userList = document.getElementById("userList");
+  userList.innerHTML = "";  // Limpar a lista antes de re-renderizar
+
+  const users = userRegistry.getUsers();
+  users.forEach((user) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item d-flex justify-content-between align-items-center";
+    li.textContent = `${user.name} - ${user.email}`;
+    userList.appendChild(li);
+  });
 }
 
-// Função para atualizar a lista de usuários na tela
-function updateUserList() {
-    const userListElement = document.getElementById('userList');
-    userListElement.innerHTML = ''; // Limpar a lista antes de adicionar novamente
+// Função para renderizar o relatório com os decoradores aplicados
+function renderReport() {
+    const reportList = document.getElementById("reportList"); // Elemento onde a lista de usuários será exibida
+    reportList.innerHTML = ""; // Limpar lista antes de renderizar
+  
+    const report = new Report(userRegistry);
+    
+    // Aplicando os decoradores
+    let decoratedReport = new HeaderedReportDecorator(report);
+    decoratedReport = new BorderedReportDecorator(decoratedReport);
+  
+    // Agora renderiza o relatório e coloca no modal
+    reportList.innerHTML = decoratedReport.render();  // Exibindo o relatório no modal
+  
+    // Abrir o modal após o conteúdo ser carregado
+    const modal = new bootstrap.Modal(document.getElementById('reportModal'));
+    modal.show();
+  }
 
-    users.forEach(user => {
-        const listItem = document.createElement('li');
-        listItem.className = 'list-group-item';
-        listItem.textContent = `Nome: ${user.name}, Email: ${user.email}`;
-        userListElement.appendChild(listItem);
-    });
-}
+// Adicionando um novo usuário
+document.getElementById("userForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
 
-// Função para gerar o relatório no modal
-function generateReport() {
-    const reportElement = document.getElementById('report');
-    reportElement.innerHTML = ''; // Limpar o conteúdo do relatório antes de gerar
-
-    if (users.length === 0) {
-        reportElement.innerHTML = '<p style="color: red;">Nenhum usuário registrado.</p>';
-    } else {
-        let reportContent = '<ul class="list-group">';
-        users.forEach(user => {
-            reportContent += `<li class="list-group-item">Nome: ${user.name}, Email: ${user.email}</li>`;
-        });
-        reportContent += '</ul>';
-        reportElement.innerHTML = reportContent;
-    }
-}
-
-// Lida com o envio do formulário de cadastro
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-
-    // Verifica se ambos os campos são preenchidos antes de adicionar
-    if (name && email) {
-        // Adiciona o usuário ao array
-        addUser(name, email);
-
-        // Atualiza a lista de usuários na tela
-        updateUserList();
-
-        // Limpa os campos do formulário
-        document.getElementById('registerForm').reset();
-    } else {
-        alert("Por favor, preencha todos os campos.");
-    }
+  if (name && email) {
+    userRegistry.addUser(name, email);  // Registrando o usuário na instância Singleton
+    renderUserList();  // Re-renderizando a lista de usuários
+    e.target.reset(); // Limpar o formulário após o cadastro
+  }
 });
 
-// Gera o relatório no modal ao abrir
-document.getElementById('reportModal').addEventListener('show.bs.modal', function () {
-    generateReport();  // Chama a função que gera o relatório
-});
+// Evento de exibição do relatório no modal
+document.getElementById("reportButton").addEventListener("click", renderReport);
