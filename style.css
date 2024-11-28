@@ -1,0 +1,39 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+h1, h5 {
+    color: #007bff;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+#report {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+button:focus {
+    box-shadow: none;
+}
+
+.modal-body {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+}
+
+.card-body {
+    padding: 1rem;
+    background-color: #ffffff;
+}
