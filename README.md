@@ -1,5 +1,3 @@
-O Singleton será usado para garantir que a lista de usuários tenha uma única instância, e o Decorator será utilizado para adicionar funcionalidades de formatação ao relatório de usuários.
-
 # Sistema de Registro de Usuários
 > @Andriely e @Wilson
 
