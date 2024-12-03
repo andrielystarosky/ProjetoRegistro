@@ -1,7 +1,4 @@
 <?php
-
-// src/CabecalhoDecorator.php
-
 class CabecalhoDecorator extends RelatorioDecorator {
     private $cabecalho;
 

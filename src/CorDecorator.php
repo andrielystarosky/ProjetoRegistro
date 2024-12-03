@@ -1,11 +1,8 @@
 <?php
-
-// src/CorDecorator.php
-
 class CorDecorator extends RelatorioDecorator {
     private $cor;
 
-    public function __construct(RelatorioBase $relatorio, $cor) {
+    public function __construct(CabecalhoDecorator $relatorio, $cor) {
         parent::__construct($relatorio);
         $this->cor = $cor;
     }

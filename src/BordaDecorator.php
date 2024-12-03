@@ -1,9 +1,6 @@
 <?php
-
-// src/BordaDecorator.php
-
 class BordaDecorator extends RelatorioDecorator {
-    public function __construct(RelatorioBase $relatorio) {
+    public function __construct(CorDecorator $relatorio) {
         parent::__construct($relatorio);
     }
 

@@ -1,11 +1,8 @@
 <?php
-
-// src/RelatorioDecorator.php
-
 abstract class RelatorioDecorator {
     protected $relatorio;
 
-    public function __construct(RelatorioBase $relatorio) {
+    public function __construct($relatorio) {
         $this->relatorio = $relatorio;
     }
 
