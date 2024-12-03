@@ -18,5 +18,5 @@ $relatorioComCor = new CorDecorator($relatorioComCabecalho, "Azul");
 $relatorioComBorda = new BordaDecorator($relatorioComCor);
 
 // Gerando o resultado final
-echo $relatorioComBorda->gerarRelatorio();  // Saída esperada: Borda: [Cor: [Azul] *** Relatório de Teste ***]
+echo $relatorioComBorda->gerarRelatorio(); 
 ?>
