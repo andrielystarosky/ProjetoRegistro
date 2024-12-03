@@ -3,10 +3,15 @@
 Este projeto demonstra o uso de dois padrões de design: Singleton e Decorator, para implementar um sistema de geração de relatórios em PHP.
 > Andriely e Wilson
 
-## Funcionalidades
+## Padrões de Projeto Utilizados
 
-- **Singleton**: Garante que apenas uma instância do relatório seja criada.
-- **Decorator**: Permite adicionar comportamentos ao relatório de forma flexível, como cabeçalho, cor e borda.
+- **Singleton**: Garante que a classe `RelatorioBase` tenha apenas uma instância ao longo da execução do sistema.
+- **Decorator**: Adiciona funcionalidades ao relatório de forma modular, como cabeçalho, cor e borda, sem alterar a estrutura original.
+
+## Linguagem de Programação
+
+Escolhemos **PHP** por ser uma linguagem simples e amplamente usada para o desenvolvimento de aplicações web, além de facilitar a implementação de padrões de design.
+
 
 ## Estrutura de Arquivos
 
